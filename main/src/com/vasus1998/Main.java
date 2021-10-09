@@ -14,10 +14,17 @@ public class Main {
         return sb.toString();
     }
     public static void main(String[] arg) throws Exception {
-        String inputURL = "https://www.simbirsoft.com/";
+        String inputURL = "";
+        if(arg.length > 0 && !arg[0].isEmpty()) {
+            inputURL = arg[0];
+        } else {
+            inputURL = "https://www.simbirsoft.com/";
+        }
+
         String text = get(inputURL).replaceAll("[^\\x00-\\xFF]", " ");
         String taboo = "[-_\\[\\]\"\'\n\r\t|,.<>/='\";^%$#@!*()\\s\\x00\\x08\\x0B\\x0C\\x0E-\\x1F]";
         String[] newtext = text.split(taboo);
+        System.out.print(get(inputURL));
         Map<String, Integer> podschet = new HashMap<>();
         for (String num : newtext){
             Integer count = podschet.get(num);
